@@ -5,6 +5,14 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReaperHelper", "ReaperHelper\ReaperHelper.csproj", "{90094650-4F06-496B-93E6-94ED4D4A81D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpp", "Rpp\Rpp.csproj", "{72598D49-56C2-401B-B7E5-5180BC805846}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B2CA3F93-7B3E-4684-BC31-BE0F8743160A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RppTests", "Tests\RppTests\RppTests.csproj", "{65060905-5ABC-4E4E-941C-82B4115E7879}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReaperScan", "ReaperScan\ReaperScan.csproj", "{4871245E-DBBC-4228-8584-04A764A31270}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +23,24 @@ Global
 		{90094650-4F06-496B-93E6-94ED4D4A81D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90094650-4F06-496B-93E6-94ED4D4A81D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90094650-4F06-496B-93E6-94ED4D4A81D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72598D49-56C2-401B-B7E5-5180BC805846}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72598D49-56C2-401B-B7E5-5180BC805846}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72598D49-56C2-401B-B7E5-5180BC805846}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72598D49-56C2-401B-B7E5-5180BC805846}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65060905-5ABC-4E4E-941C-82B4115E7879}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65060905-5ABC-4E4E-941C-82B4115E7879}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65060905-5ABC-4E4E-941C-82B4115E7879}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65060905-5ABC-4E4E-941C-82B4115E7879}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4871245E-DBBC-4228-8584-04A764A31270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4871245E-DBBC-4228-8584-04A764A31270}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4871245E-DBBC-4228-8584-04A764A31270}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4871245E-DBBC-4228-8584-04A764A31270}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{65060905-5ABC-4E4E-941C-82B4115E7879} = {B2CA3F93-7B3E-4684-BC31-BE0F8743160A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {12B8F995-9D11-47AB-921C-3167575958EB}
