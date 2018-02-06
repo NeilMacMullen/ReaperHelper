@@ -30,5 +30,7 @@ namespace Rpp
         {
             actor(this);
         }
+
+        public static ProjectLine Empty { get; } = new ProjectLine(string.Empty);
     }
 }

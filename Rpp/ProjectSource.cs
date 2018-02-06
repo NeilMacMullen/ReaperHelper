@@ -7,29 +7,63 @@ namespace Rpp
 {
     public class ProjectSource : ProjectElement
     {
-        public ProjectSource(string header, ImmutableArray<ReaperProjectNode> subelements) : base(header, subelements)
+        private readonly ProjectLine _lineElement = ProjectLine.Empty;
+        public SourceType Source { get; private set; }
+        public ProjectSource(string header,
+            ImmutableArray<ReaperProjectNode> subelements) : base(
+            header, subelements)
         {
-            if (subelements.Length!=1) 
-                throw new NotImplementedException($"Can't cope with SOURCE {string.Join(Environment.NewLine,subelements.Select(e=>e.AsString(0)).ToArray())}");
-            var file = subelements
+            var headerTokens = header.Split();
+            if (headerTokens.Contains("MIDI"))
+            {
+                Source = SourceType.Midi;
+                return;
+            }
+
+            if (headerTokens.Contains("CLICK"))
+            {
+                Source = SourceType.Click;
+                return;
+            }
+
+
+            Source = SourceType.File;
+            _lineElement = subelements
                 .OfType<ProjectLine>()
-                .Single(p => p.Line.StartsWith("FILE"))
-                .Line;
-           var m = Regex.Match(file,@"FILE\s+\""([^\""]+)\""\s*(.*)");
+                .Single(p => p.Line.StartsWith("FILE"));
+
+            var filedescription = _lineElement.Line;
+            var m = Regex.Match(filedescription,
+                @"FILE\s+\""([^\""]+)\""\s*(.*)");
             if (!m.Success)
-                throw  new NotImplementedException($"Couldn't parse '{file}'");
-            File = m.Groups[1].Value;
-            Trailing = m.Groups[2].Value;
+                throw new NotImplementedException(
+                    $"Couldn't parse '{filedescription}'");
+            File = m.Groups[1]
+                .Value;
+            Trailing = m.Groups[2]
+                .Value;
         }
 
-        public string File { get; }
-        public string Trailing { get; }
+        public string File { get; } = string.Empty;
+        public string Trailing { get; } = string.Empty;
 
         public ProjectSource WithFile(string replacementfile)
         {
-            var newLine = $"FILE \"{replacementfile}\" {Trailing}";
-            var pl = new ProjectLine(newLine);
-           return  new ProjectSource(Header, ImmutableArray.Create((ReaperProjectNode) pl));
+            if(Source!=SourceType.File)
+                throw new InvalidOperationException();
+            var pl =
+                new ProjectLine(
+                    $"FILE \"{replacementfile}\" {Trailing}");
+            var newElements = Elements.Replace(_lineElement, pl);
+            return new ProjectSource(Header, newElements);
+        }
+
+        public enum SourceType
+        {
+            File,
+            Midi,
+            Click,
+            Unknown,
         }
     }
 }
